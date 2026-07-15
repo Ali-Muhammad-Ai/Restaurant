@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EpicureanSelect | Cafe Finder</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#eae8e7",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "tertiary-container": "#2c2c28",
+                    "surface": "#fbf9f8",
+                    "tertiary-fixed-dim": "#c9c6c0",
+                    "surface-bright": "#fbf9f8",
+                    "surface-container": "#efeded",
+                    "primary-container": "#1b3022",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#b4cdb8",
+                    "on-surface": "#1b1c1c",
+                    "primary-fixed": "#d0e9d4",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#474742",
+                    "primary": "#061b0e",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fdb964",
+                    "on-primary-container": "#819986",
+                    "on-tertiary-fixed": "#1c1c18",
+                    "on-surface-variant": "#434843",
+                    "on-primary-fixed": "#0b2013",
+                    "outline": "#737973",
+                    "secondary": "#855300",
+                    "on-tertiary-container": "#95938d",
+                    "surface-variant": "#e4e2e2",
+                    "inverse-on-surface": "#f2f0f0",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b4cdb8",
+                    "background": "#fbf9f8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f5f3f3",
+                    "outline-variant": "#c3c8c1",
+                    "surface-tint": "#4d6453",
+                    "tertiary": "#171814",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#e5e2db",
+                    "secondary-fixed": "#ffddb8",
+                    "on-secondary-fixed": "#2a1700",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#754900",
+                    "inverse-surface": "#303030",
+                    "on-primary-fixed-variant": "#364c3c",
+                    "secondary-fixed-dim": "#fdb964",
+                    "on-background": "#1b1c1c",
+                    "surface-dim": "#dbd9d9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Work Sans"],
+                    "label-sm": ["Work Sans"],
+                    "headline-xl": ["\"Source Serif 4\""],
+                    "headline-md": ["\"Source Serif 4\""],
+                    "body-md": ["Work Sans"],
+                    "headline-lg-mobile": ["\"Source Serif 4\""],
+                    "body-lg": ["Work Sans"],
+                    "headline-lg": ["\"Source Serif 4\""]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .shadow-soft { box-shadow: 0 4px 20px rgba(6, 27, 14, 0.15); }
+        .hero-gradient { background: linear-gradient(rgba(27, 28, 28, 0.4), rgba(27, 28, 28, 0.4)); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky bg-surface dark:bg-surface-dim shadow-[0_4px_20px_rgba(6,27,14,0.15)] z-50 transition-all duration-300 ease-in-out">
+<div class="max-w-container-max mx-auto px-margin-desktop flex items-center justify-between h-20">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">
+                EpicureanSelect
+            </div>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors" href="#">Restaurants</a>
+<a class="font-body-md text-body-md text-primary dark:text-secondary-fixed border-b-2 border-secondary font-bold pb-1" href="#">Cafes</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors" href="#">Street Food</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container border border-outline/20 rounded-full text-body-md focus:outline-none focus:border-primary transition-all w-64" placeholder="Search cafes..." type="text"/>
+</div>
+<button class="font-label-md text-label-md px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">Login</button>
+<button class="font-label-md text-label-md px-6 py-2 rounded-full bg-primary text-on-primary hover:bg-on-primary-fixed-variant transition-all duration-300 shadow-soft">Sign Up</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[450px] flex items-center">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full hero-gradient absolute inset-0"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105" data-alt="An atmospheric, low-angle interior shot of a sophisticated, modern cafe with large floor-to-ceiling windows. Warm sunlight filters through architectural slats, illuminating smooth wooden tables, plush forest green seating, and professional espresso machines. The air feels clear and inviting, with a soft blur of a barista in the background. The aesthetic is curated luxury, utilizing a palette of natural wood, deep greens, and crisp whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfcMc06lfBUsVUhOMRcOYCpZ1Q-_r73-V2mB2iYBPeI0aoTejuOcPuRk2bqzdZrV6ycVzZnxOhfl2-4yXP0zBLYtnMbSq5-U4d7pt4h5KiH9NTKnZUfOAIn9fb1_mcvheq5wgNH-3DRA5li-2xttCuntxgslCz2jPfg1APqyaH8c0a8qaHXuKSsaTNRCphMj0kxAFgwkfbb4tjklksOOKUf2saZxmNsBfYPDBv_O_M8YjtyCiHohKFYxosTGoNlVuy8BNpi8PcOZ0')">
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10 w-full">
+<div class="max-w-2xl">
+<span class="font-label-md text-label-md text-secondary-fixed bg-primary-container px-4 py-1 rounded-full uppercase tracking-widest mb-6 inline-block">Curated Selection</span>
+<h1 class="font-headline-xl text-headline-xl text-white mb-6">Find Your Perfect <br/><span class="italic text-secondary-container">Quiet Corner</span></h1>
+<p class="font-body-lg text-body-lg text-white/90 mb-8 max-w-lg">From artisanal roasteries to cozy hidden gems with high-speed WiFi and panoramic outdoor views.</p>
+<div class="flex flex-wrap gap-4">
+<div class="bg-surface-container-lowest p-1 rounded-full flex items-center shadow-soft">
+<span class="material-symbols-outlined px-3 text-outline">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md py-3 pr-6" placeholder="Current Location" type="text"/>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors">Explore</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter & Search Section -->
+<section class="py-12 bg-surface-container-low sticky top-20 z-40">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex flex-wrap items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface-variant mr-2">Filter by:</span>
+<!-- Custom Select Filter -->
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline/20 rounded-lg font-label-md text-label-md hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">wifi</span>
+                            WiFi Availability
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline/20 rounded-lg font-label-md text-label-md hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">deck</span>
+                            Outdoor Seating
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline/20 rounded-lg font-label-md text-label-md hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">coffee</span>
+                            Specialty Coffee
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<div class="h-6 w-[1px] bg-outline/20 mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline/20 rounded-lg font-label-md text-label-md hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                            More Filters
+                        </button>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">
+                        Showing 42 premium cafes in your area
+                    </div>
+</div>
+<!-- Active Filter Chips -->
+<div class="flex flex-wrap gap-2 mt-6">
+<div class="flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full text-primary font-label-sm text-label-sm">
+                        High Speed WiFi <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</div>
+<div class="flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full text-primary font-label-sm text-label-sm">
+                        Dog Friendly <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span>
+</div>
+<button class="text-secondary font-label-sm text-label-sm hover:underline ml-2">Clear all</button>
+</div>
+</div>
+</section>
+<!-- Main Content - Bento Grid Results -->
+<section class="py-16">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Feature Card (Spans 2 columns on large) -->
+<div class="lg:col-span-2 group bg-surface-container-lowest rounded-xl overflow-hidden shadow-soft flex flex-col md:flex-row transition-transform duration-300 hover:-translate-y-1">
+<div class="md:w-1/2 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A premium artisanal coffee roastery with industrial chic aesthetics. A highly skilled barista is performing a pour-over coffee technique, with focused steam rising from a silver kettle. The environment features high ceilings, exposed brick walls, and custom-designed minimalist wooden furniture. The lighting is warm and directional, creating a sophisticated gallery-like mood in deep greens and rich browns." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7r8VTZ-sXYH4wt8EMqkfRVAOjj8E8UNuzoC5Xeb0Li4u-OcaH7y9mT6X2Ojxuls9i4slbZAy_-cQW4mb5cwyaD6JezNzWE2UGsIUdUqnk1I0Yj-6DxqTaQ6JaI8IsIk4rMLeC9aEVw5ULRFIbKCyMHtvifl9UKUSKNlliWMPOzp1yZtT3Jv3rtVklPKoE3xHkpGpBa3oAClIINJp6Yqafy0klt9IA5xg5P7jAKIHrmmx6v5eE4SframpKaPccqqegM9Rd0ac2yQA"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-secondary text-white px-3 py-1 rounded-full text-label-sm font-label-sm">Editor's Choice</span>
+<span class="bg-white/90 backdrop-blur-md text-primary px-3 py-1 rounded-full text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span> 4.9
+                                </span>
+</div>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md">The Monolith Roastery</h3>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">favorite</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6 line-clamp-3">
+                                    Award-winning single-origin beans roasted on-site. Known for its quiet library atmosphere, ergonomic seating, and gigabit fiber internet.
+                                </p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-surface-container px-2 py-1 rounded text-[11px] uppercase tracking-wider font-bold">Specialty</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[11px] uppercase tracking-wider font-bold">Work-Friendly</span>
+<span class="bg-surface-container px-2 py-1 rounded text-[11px] uppercase tracking-wider font-bold">Vegan Milk</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-outline/10">
+<span class="font-label-md text-label-md text-primary">$15 - $25 per person</span>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:bg-secondary transition-colors">Book a Table</button>
+</div>
+</div>
+</div>
+<!-- Regular Card -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-soft flex flex-col transition-transform duration-300 hover:-translate-y-1">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A lush outdoor terrace cafe filled with vibrant green plants and hanging vines. Round marble-topped tables are shaded by stylish cream umbrellas. Guests are enjoying the fresh air and natural lighting of a bright, sunny afternoon. The overall vibe is Mediterranean luxury, featuring soft pastels, natural textures, and a calm, upscale garden atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6FojRzq_2zdnNc4NIXyjYpHw_vB6Ucrd9xxZZ1DzLCE3HaWzNZPZJhlMm8WRWyrurUk4hwAD_hNPp9NrDUwJjYikCi86o9C0HqbGeWphA73u9xKyLdpOVIIGIFVMVxWf6Q0kV84DoiTQ6qd9af04OKMZ-6RFODSPaCDOdQ6x-r9UUKXo_qoxEaeXwC2UgKEJcMlnACGX6i6gti8BBrAgnccjj_2CHIVHYu7kr-j8M_6FDmRtXT2_cXCwuK2WoSDrUfcPOSb5pVKI"/>
+<div class="absolute bottom-4 left-4">
+<span class="bg-white/90 backdrop-blur-md text-primary px-3 py-1 rounded-full text-label-sm font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">deck</span> Outdoor Seating
+                                </span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-md text-headline-md text-[20px]">Verdant Garden</h3>
+<span class="text-on-surface-variant font-label-sm text-label-sm">2.4 miles</span>
+</div>
+<div class="flex items-center gap-1 mb-4 text-secondary">
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]">star_half</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm ml-1">(128)</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6 line-clamp-2">A greenhouse-style sanctuary serving local organic blends and botanical pastries.</p>
+<button class="w-full py-3 rounded-full border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+<!-- Regular Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-soft flex flex-col transition-transform duration-300 hover:-translate-y-1">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="The interior of a minimalist, Zen-inspired cafe with clean lines and a warm, monochromatic beige palette. Soft, diffused lighting creates a serene environment. Small wooden pedestals serve as tables for ceramic cups of matcha and espresso. Large circular mirrors reflect the elegant, uncluttered space, conveying a sense of deep tranquility and curated focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpfX4kTskuTSnWA-ZYdBePWpeqTbb81BSkx-KgeshL9wze9bdM7o-k3OX-dL1KaTi6ExPLMyj8iKbnZfzX4ALhXntG6c9Y0CPxiCA6AbP3O1s2VCTl54JHrvXkccaNK244ItrX6-1ozJ407RARrRrLFWGPBmaCiSNaxa-Y9syLkLDVPbKbSYRbJIp5K4LHoCdOwhwuvELqwdJRLWndmONHMPs-ibzaRwq7qz9sM9RiiEQBNUGxYqiDtj-OsqZhRcb1gG06jdMns8I"/>
+<div class="absolute top-4 right-4">
+<span class="bg-primary/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-label-sm font-label-sm">Quiet Zone</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-md text-headline-md text-[20px]">Ethereal Brews</h3>
+<span class="text-on-surface-variant font-label-sm text-label-sm">0.8 miles</span>
+</div>
+<div class="flex items-center gap-1 mb-4 text-secondary">
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm ml-1">(245)</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6 line-clamp-2">A minimalist space dedicated to the art of coffee and silent contemplation.</p>
+<button class="w-full py-3 rounded-full border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+<!-- Regular Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-soft flex flex-col transition-transform duration-300 hover:-translate-y-1">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A cozy, rustic neighborhood cafe with dark wood paneling, floor-to-ceiling bookshelves, and comfortable leather armchairs. Soft amber lighting emanates from vintage lamps, casting a warm glow over patrons reading and working. The atmosphere is inviting and lived-in, featuring a palette of ochre, deep browns, and forest greens. It feels like a high-end private library." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy53JixZPc9Agui2FHWd_dy2IWPcKMfTAfQdK0fTi5HEOSWDF_X7iPLERhFVRmhfVqlCLH-tlDSGZEc48TzpSCHDRuy-XKWuvKCyoHOar1NaUYrZaGOJ3mmuL3vYRjMUli71KB68yHgQOAeLjSpkXI0hJFo1OmCStWemp3-_HdZv5mu3agXMrXTFcr5CSiYulChb0fIT69TB2LUYy8uu-UiWNu96DVy9JVoWlAgi2YixmLVDS7PqYG0isDQO2AVkx5Gm7F-D_lQ1w"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-label-sm">WiFi: 500Mbps</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-md text-headline-md text-[20px]">Archive Coffee</h3>
+<span class="text-on-surface-variant font-label-sm text-label-sm">1.5 miles</span>
+</div>
+<div class="flex items-center gap-1 mb-4 text-secondary">
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm ml-1">(89)</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-6 line-clamp-2">Historic setting meets modern tech. The ultimate remote work destination.</p>
+<button class="w-full py-3 rounded-full border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+<!-- Decorative Map CTA -->
+<div class="group relative bg-primary rounded-xl overflow-hidden shadow-soft flex flex-col items-center justify-center p-8 text-center min-h-[350px]">
+<div class="absolute inset-0 opacity-20 transition-opacity duration-500 group-hover:opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcrpqOvBPqpg1Jt6Wgff-4QHUM2CV_8vyJBRBYmjgFCo17fMWja_6rNWMdiGXsmS22xv20jVCDsHfyXbCR5ksGF4kXRepRj56BGUAzzVhvTjr5w4ko0ZnU1qIGunM1fNm8dgXo_lVtxAJbnIcf4jlOuPod3FYmCCwI5jZTw4s_HmusuhuLbMveUMJPczMAAhqogovvLWClAOjdxVyIKDZ9z-rysqXWB7QTiUUzFQ6na7BTfCXaZgGOiLvkcgpZhNJTQeJkijDyRQM')">
+</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-secondary-container text-[64px] mb-4">map</span>
+<h3 class="font-headline-md text-headline-md text-white mb-4">Interactive Explorer</h3>
+<p class="text-white/80 font-body-md text-body-md mb-8">View all top-rated cafes on our immersive map and find the one closest to you.</p>
+<button class="bg-secondary-container text-on-secondary-container px-8 py-3 rounded-full font-label-md text-label-md hover:bg-secondary-fixed transition-colors">Launch Map</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Subscription Area -->
+<section class="bg-primary-container py-20 overflow-hidden relative">
+<div class="max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="max-w-3xl">
+<h2 class="font-headline-xl text-headline-xl text-on-primary-container mb-6">Never Miss a <span class="text-secondary-fixed">New Opening</span></h2>
+<p class="font-body-lg text-body-lg text-white/70 mb-10">Join our exclusive circle of coffee enthusiasts. Receive weekly curated guides to the best roasting houses and hidden work spots.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-xl">
+<input class="flex-grow bg-white/10 border border-white/20 rounded-lg px-6 py-4 text-white focus:outline-none focus:border-secondary-container transition-all" placeholder="Your email address" type="email"/>
+<button class="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-lg font-label-md text-label-md hover:bg-secondary-fixed transition-colors whitespace-nowrap">Subscribe Now</button>
+</form>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="absolute right-0 bottom-0 translate-x-1/4 translate-y-1/4 opacity-10">
+<span class="material-symbols-outlined text-[500px] text-white">coffee</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-tertiary dark:bg-tertiary-container">
+<div class="max-w-container-max mx-auto px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-center gap-base">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-headline-md text-headline-md text-on-tertiary">EpicureanSelect</div>
+<p class="text-tertiary-fixed-dim font-label-sm text-label-sm text-center md:text-left max-w-xs">The world's most discerning guide to culinary excellence and refined discoveries.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter my-8 md:my-0">
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-on-tertiary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-on-tertiary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-on-tertiary transition-colors" href="#">Cookie Policy</a>
+<a class="font-label-sm text-label-sm text-tertiary-fixed-dim hover:text-on-tertiary transition-colors" href="#">Support</a>
+</div>
+<div class="flex flex-col items-center md:items-end gap-4">
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-tertiary-fixed-dim flex items-center justify-center text-tertiary-fixed-dim hover:bg-on-tertiary hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-tertiary-fixed-dim flex items-center justify-center text-tertiary-fixed-dim hover:bg-on-tertiary hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+</div>
+<div class="text-tertiary-fixed-dim font-label-sm text-label-sm opacity-80 hover:opacity-100 transition-opacity">
+                    © 2024 EpicureanSelect. All rights reserved.
+                </div>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface shadow-[0_-4px_20px_rgba(6,27,14,0.1)] z-50 flex justify-around items-center h-16 px-4">
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="text-[10px] font-label-sm">Dine</span>
+</button>
+<button class="flex flex-col items-center text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_cafe</span>
+<span class="text-[10px] font-label-sm">Cafes</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-label-sm">Explore</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-label-sm">Profile</span>
+</button>
+</div>
+<script>
+        // Simple intersection observer for reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.group').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+            observer.observe(el);
+        });
+
+        // Floating Action Button logic - only for mobile if needed
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2', 'h-16');
+                header.classList.remove('h-20');
+            } else {
+                header.classList.remove('py-2', 'h-16');
+                header.classList.add('h-20');
+            }
+        });
+    </script>
+</body></html>

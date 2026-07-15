@@ -15,7 +15,7 @@ $page_title = "About - FoodFinder Karachi";
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.php">FoodFinder Karachi</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,9 @@ $page_title = "About - FoodFinder Karachi";
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
+    <?php include 'config/database.php';
+    include 'includes/nav.php'; ?>
 
     <div style="height:76px"></div>
     <section class="hero text-center">
